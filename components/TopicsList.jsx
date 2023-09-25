@@ -11,9 +11,9 @@ export const TopicsList = () => {
       </div>
       <div className="flex gap-2">
         <RemoveBtn />
-        {/* <Link href={`/editTopic/${t._id}`}> */}
-        <HiPencilAlt size={24} />
-        {/* </Link> */}
+        <Link href={"/editTopic"}>
+          <HiPencilAlt size={24} />
+        </Link>
       </div>
     </div>
   );
