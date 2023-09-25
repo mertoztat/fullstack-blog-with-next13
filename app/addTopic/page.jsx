@@ -2,6 +2,8 @@
 import Input from "@/components/Input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddTopic() {
   const router = useRouter();
@@ -24,7 +26,13 @@ export default function AddTopic() {
         body: JSON.stringify(form),
       }).then((response) => {
         if (response.status === 200) {
-          router.push("/");
+          toast.success("Post Added Succesful!", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000, // 2 saniye sonra otomatik olarak kapanır
+          });
+          setTimeout(() => {
+            router.push("/");
+          }, 2200);
         }
       });
     } catch (error) {
@@ -56,6 +64,7 @@ export default function AddTopic() {
       >
         Add Topic
       </button>
+      <ToastContainer />
     </form>
   );
 }

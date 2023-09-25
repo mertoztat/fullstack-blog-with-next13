@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { HiOutlineTrash } from "react-icons/hi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RemoveBtn({ id }) {
   const router = useRouter();
@@ -14,7 +16,13 @@ export default function RemoveBtn({ id }) {
       });
 
       if (res.ok) {
-        router.refresh();
+        toast.error("Deleted!", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000, // 2 saniye sonra otomatik olarak kapanır
+        });
+        setTimeout(() => {
+          router.refresh();
+        }, 2500);
       }
     }
   };
@@ -22,6 +30,7 @@ export default function RemoveBtn({ id }) {
   return (
     <button onClick={deletePost} className="text-red-400">
       <HiOutlineTrash size={24} />
+      <ToastContainer />
     </button>
   );
 }
