@@ -3,7 +3,9 @@ import { HiPencilAlt } from "react-icons/hi";
 import RemoveBtn from "./RemoveButton";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/topics");
+  const res = await fetch("http://localhost:3000/api/topics", {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -26,7 +28,7 @@ export const TopicsList = async () => {
             </div>
             <div className="flex gap-2 justify-center items-center">
               <RemoveBtn />
-              <Link href={"/editTopic"}>
+              <Link href={`/editTopic/${item._id}`}>
                 <HiPencilAlt size={24} />
               </Link>
             </div>
