@@ -13,6 +13,9 @@ export default function AddTopic() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!title || !description) return;
+
     try {
       const form = {
         title,
@@ -31,6 +34,7 @@ export default function AddTopic() {
             autoClose: 2000, // 2 saniye sonra otomatik olarak kapanır
           });
           setTimeout(() => {
+            router.refresh();
             router.push("/");
           }, 2200);
         }
