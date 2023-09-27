@@ -21,7 +21,7 @@ export default function AddTopic() {
         title,
         description,
       };
-      await fetch("http://localhost:3000/api/topics/", {
+      await fetch("/api/topics/", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

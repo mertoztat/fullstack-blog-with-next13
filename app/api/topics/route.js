@@ -9,7 +9,7 @@ export async function POST(req) {
   return NextResponse.json({ message: "Topic Created" }, { status: 200 });
 }
 
-export async function GET(req) {
+export async function GET() {
   await connectMongoDB();
   const topics = await Topic.find();
   return NextResponse.json({ topics });
