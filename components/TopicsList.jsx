@@ -3,15 +3,14 @@ import { HiPencilAlt } from "react-icons/hi";
 import RemoveBtn from "./RemoveButton";
 
 async function getData() {
-  const res = await fetch(`/api/topics`, {
-    cache: "no-store",
-  });
+  // this below code some get error because we are on server component we dont access api/topics.
+  // Two solutions: 1- Deploy to api folder and link to res 2- import below like this.
+  // const res = await fetch(`/api/topics`, {
+  //   cache: "no-store",
+  // });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+  const res = await import("../app/api/topics/route");
+  return await (await res.GET()).json();
 }
 
 export const TopicsList = async () => {
